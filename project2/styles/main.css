@@ -1,1 +1,156 @@
+/* 1) Import Google Font for headings */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
 
+/* 2) Theme + base tokens */
+:root {
+  --bg: #0f172a;          /* deep slate */
+  --panel: #0b1226;
+  --ink: #e2e8f0;         /* text */
+  --ink-dim: #94a3b8;     /* dim text */
+  --line: rgba(148,163,184,0.2);
+
+  --accent: #7c3aed;      /* violet */
+  --accent-2: #06b6d4;    /* cyan */
+
+  --radius: 1rem;
+  --shadow: 0 0.6rem 2rem rgba(0,0,0,0.35);
+
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.2rem;
+  --step-2: 1.5rem;
+  --step-3: 2rem;
+  --step-4: clamp(1.9rem, 5vw, 3rem);
+}
+
+* { box-sizing: border-box; }
+html { font-size: 100%; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(120vw 120vh at 70% -10%, #1b2b52 0%, #0f172a 60%);
+  /* Native browser font for body */
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: var(--step-0);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings use imported font */
+h1, h2, h3 {
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.15;
+  margin: 0 0 0.7rem 0;
+}
+h1 { font-size: var(--step-4); font-weight: 800; letter-spacing: .01em; }
+h2 { font-size: var(--step-3); font-weight: 700; }
+h3 { font-size: var(--step-2); font-weight: 600; }
+
+/* Copy */
+p, li { color: var(--ink); }
+small, figcaption { color: var(--ink-dim); font-size: var(--step--1); }
+a { color: var(--accent-2); text-decoration: none; }
+a:hover, a:focus { text-decoration: underline; }
+
+
+.container-fixed {
+  width: 62rem;      /* ~992px fixed */
+  max-width: 92vw;   /* safeguard on tiny screens */
+  margin-inline: auto;
+  padding: 1.25rem 1rem;
+}
+.container-fluid {
+  width: min(95vw, 90rem);
+  margin-inline: auto;
+  padding: 1.25rem 1rem;
+}
+
+/* Shared header + centered horizontal nav */
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(2, 6, 23, 0.7);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.site-wrap {
+  width: min(94%, 78rem);
+  margin-inline: auto;
+  padding: 0.75rem 0.5rem;
+}
+
+/* simple brand dot */
+.brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .5rem;
+}
+.brand .dot {
+  inline-size: .9rem; block-size: .9rem;
+  border-radius: 999px;
+  background: conic-gradient(from 0deg, var(--accent), var(--accent-2), #22c55e, var(--accent));
+  box-shadow: 0 0 1.2rem rgba(124,58,237,0.6);
+}
+
+/* The ONE declaration removing list-style for the nav on all pages */
+nav ul {
+  list-style: none;          /* <= meets "single CSS declaration" requirement */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;   /* centered horizontal nav */
+  align-items: center;
+  flex-wrap: wrap;
+}
+nav a {
+  display: inline-block;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  color: var(--ink);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid var(--line);
+  transition: transform .18s ease, background .18s ease;
+}
+nav a:hover { transform: translateY(-0.06rem); }
+nav a[aria-current="page"] {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: white;
+  border-color: transparent;
+}
+
+/* Sections & figures */
+main section {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.2rem;
+  margin: 1.2rem 0;
+}
+figure { margin: 1rem 0; }
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: .8rem;
+}
+
+/* Footer */
+footer {
+  margin-top: 3rem;
+  border-top: 1px solid var(--line);
+  background: rgba(2, 6, 23, 0.6);
+}
+footer .site-wrap { padding: 1rem 0.5rem; }
+footer p, footer small { color: var(--ink-dim); margin: 0; }
+
+@media (min-width: 56rem) {
+  main section {
+    padding: 1.6rem;
+    margin: 1.5rem 0;
+  }
+}
